@@ -28,19 +28,23 @@ const InputComponent = ({ summarizeHandler }) => {
   return (
     <div className="w-full md:w-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
       <div className="flex flex-col items-center pb-6">
+        <div className=' w-full
+         flex flex-col items-end'>
+
         <textarea
           id="message"
           rows="4"
           value={texttosum}
-          className="block p-2.5 m-4 w-11/12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block p-2.5 m-4 w-11/12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+          scrollbar scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-transparent"
           placeholder="Write your thoughts here..."
           onChange={onTextchange}
-        ></textarea>
+          ></textarea>
         <button
           type="button"
           id="delete-btn"
           onClick={textEraser}
-          className="absolute top-5 right-3 md:right-5 opacity-70 text-white hover:text-white border bg-red-500 border-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-2 py-2 text-center me-2 mb-2 dark:border-red-500 dark:text-white dark:hover:text-white dark:hover:bg-red-600  transition-none"
+          className=" opacity-70 text-black hover:text-red-700  font-medium rounded-lg text-sm px-2 py-2 text-center me-2 mb-2 dark:text-white dark:hover:text-red-500   transition-none"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +57,7 @@ const InputComponent = ({ summarizeHandler }) => {
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
-          >
+            >
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path className="transition-none" d="M4 7l16 0" />
             <path className="transition-none" d="M10 11l0 6" />
@@ -62,7 +66,8 @@ const InputComponent = ({ summarizeHandler }) => {
             <path className="transition-none" d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
           </svg>
         </button>
-        <div className="flex mt-4 md:mt-6 gap-1">
+        </div>
+        <div className="flex mt-1 md:mt-1 gap-1">
           <button
             className="box-border relative z-30 inline-flex items-center justify-center w-auto px-2 py-1 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-500 hover:ring-offset-indigo-200 ease focus:outline-none"
             onClick={dummysummarizeHandler}
@@ -76,7 +81,8 @@ const InputComponent = ({ summarizeHandler }) => {
               Summarize
             </span>
           </button>
-          <button className="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 dark:border-indigo-400 text-indigo-600 text-white">
+          <input type="file" id='upload-btn' style={{display: 'none'}}  onChange={(e)=>{console.log(e.target.files[0]);}} accept="image/*"/>
+          <label for='upload-btn' className="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 dark:border-indigo-400 text-indigo-600 text-white">
             <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
             <span className="relative flex text-indigo-600 dark:text-indigo-400 transition-colors duration-300 group-hover:text-white ease">
               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-photo-plus mr-2 transition-none" width="25" height="25" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -90,7 +96,8 @@ const InputComponent = ({ summarizeHandler }) => {
               </svg>
               Upload
             </span>
-          </button>
+          </label>
+          
         </div>
       </div>
     </div>
