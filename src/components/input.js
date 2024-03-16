@@ -35,7 +35,7 @@ const InputComponent = ({ summarizeHandler }) => {
           id="message"
           rows="4"
           value={texttosum}
-          className="block p-2.5 m-4 w-11/12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+          className="block p-2.5 m-4 mb-0 resize-none w-11/12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
           scrollbar scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-transparent"
           placeholder="Write your thoughts here..."
           onChange={onTextchange}
