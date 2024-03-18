@@ -2,6 +2,8 @@ from flask import Flask,request
 
 from flask_cors import CORS
 
+from Image_extract import extract_text
+
 app = Flask(__name__)
 CORS(app) 
 @app.route('/')
@@ -27,7 +29,8 @@ def upload():
     # Save the file to a desired location or perform other operations
     file.save('uploads/' + file.filename)
 
-    return {'uploaded':file.filename}
+    text=extract_text('D:/Alex/nlpproject/src/backend/uploads/' + file.filename)
+    return {'response':text}
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

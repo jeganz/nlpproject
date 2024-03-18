@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const InputComponent = ({ summarizeHandler }) => {
     const [texttosum, settexttosum] = useState('')
-
+    const [isloading, setisloading] = useState(false)
     const onTextchange=(e)=>{
         settexttosum(e.target.value)
     }
@@ -29,23 +29,19 @@ const InputComponent = ({ summarizeHandler }) => {
       const image=e.target.files[0]
       const formData = new FormData();
       formData.append("image", image);
-      
+      setisloading(true)
       try {
         const response = await fetch("http://localhost:5000/upload", {
           method: "POST",
           body: formData,
         });
         const responseData = await response.json();
-        console.log(responseData);
-        settexttosum('response.uploaded')
+        console.log(responseData.response);
+        settexttosum(responseData.response)
+        setisloading(false)
       } catch (error) {
         console.error('Error fetching data:', error);
-      }
-
-      try {
-        
-      } catch (error) {
-        console.log(error);
+        setisloading(false)
       }
 
     }
@@ -56,15 +52,24 @@ const InputComponent = ({ summarizeHandler }) => {
         <div className=' w-full
          flex flex-col items-end'>
 
-        <textarea
+          {isloading?(<div role="status" class="w-11/12 mt-4 mr-4  animate-pulse">
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+            <span class="sr-only">Loading...</span>
+        </div>):(<textarea
           id="message"
-          rows="4"
+          rows="8"
           value={texttosum}
-          className="block p-2.5 m-4 mb-0 resize-none w-11/12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
+          className="block p-2.5 m-4 mr-5 mb-0 resize-none w-11/12 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500
           scrollbar scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-transparent"
           placeholder="Write your thoughts here..."
           onChange={onTextchange}
-          ></textarea>
+          ></textarea>)}
+        
         <button
           type="button"
           id="delete-btn"

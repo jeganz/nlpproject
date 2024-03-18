@@ -7,7 +7,8 @@ const OutputComponent = () => {
                 <textarea
                     id="message"
                     disabled={true}
-                    rows="5"
+                    rows="9"
+                    value={"Tailwind CSS Skeleton - FlowbiteThe skeleton component can be used as an alternative loading indicator to the spinner by mimicking the content that will be loaded such as text, images, or videoUse the skeleton component to indicate a loading status with placeholder elements that look very similar to the type of content that is being loaded such as paragraphs, heading, images, videos, and moreYou can set the width and height of these skeleton components based on the size of the content and element that it is being loaded in, such as a card or an article pageYou can also animate the skeleton comonent by using the .animate-pulse utility class from Tailwind CSS.ailwind CSS Skeleton - FlowbiteThe skeleton component can be used as an alternative loading indicator to the spinner by mimicking the content that will be loaded such as text, images, or videoUse the skeleton component to indicate a loading status with placeholder elements that look very similar to the type of content that is being loaded such as paragraphs, heading, images, videos, and moreYou can set the width and height of these skeleton components based on the size of the content and element that it is being loaded in, such as a card or an article pageYou can also animate the skeleton comonent by using the .animate-pulse utility class from Tailwind CSS"}
                     className="block p-2.5 m-4 w-11/12 text-sm text-gray-900 bg-white rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Your Summary will appear here..."
                 ></textarea>
