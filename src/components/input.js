@@ -25,6 +25,31 @@ const InputComponent = ({ summarizeHandler }) => {
           fetchData()
     }
 
+    const handleImageUpload= async (e)=>{
+      const image=e.target.files[0]
+      const formData = new FormData();
+      formData.append("image", image);
+      
+      try {
+        const response = await fetch("http://localhost:5000/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const responseData = await response.json();
+        console.log(responseData);
+        settexttosum('response.uploaded')
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+
+      try {
+        
+      } catch (error) {
+        console.log(error);
+      }
+
+    }
+
   return (
     <div className="w-full md:w-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 relative">
       <div className="flex flex-col items-center pb-6">
@@ -67,7 +92,7 @@ const InputComponent = ({ summarizeHandler }) => {
           </svg>
         </button>
         </div>
-        <div className="flex mt-1 md:mt-1 gap-1">
+        <div className="flex mt-4 md:mt-0 gap-1">
           <button
             className="box-border relative z-30 inline-flex items-center justify-center w-auto px-2 py-1 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-500 hover:ring-offset-indigo-200 ease focus:outline-none"
             onClick={dummysummarizeHandler}
@@ -81,7 +106,7 @@ const InputComponent = ({ summarizeHandler }) => {
               Summarize
             </span>
           </button>
-          <input type="file" id='upload-btn' style={{display: 'none'}}  onChange={(e)=>{console.log(e.target.files[0]);}} accept="image/*"/>
+          <input type="file" id='upload-btn' style={{display: 'none'}}  onChange={handleImageUpload} accept="image/*"/>
           <label for='upload-btn' className="rounded-md px-3.5 py-2 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-indigo-600 dark:border-indigo-400 text-indigo-600 text-white">
             <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-indigo-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
             <span className="relative flex text-indigo-600 dark:text-indigo-400 transition-colors duration-300 group-hover:text-white ease">
