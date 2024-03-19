@@ -29,7 +29,7 @@ def upload():
     # Save the file to a desired location or perform other operations
     file.save('uploads/' + file.filename)
 
-    text=extract_text('D:/Alex/nlpproject/src/backend/uploads/' + file.filename)
+    text=extract_text('uploads/' + file.filename)
     return {'response':text}
 
 if __name__ == '__main__':

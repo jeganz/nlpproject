@@ -36,7 +36,6 @@ const InputComponent = ({ summarizeHandler }) => {
           body: formData,
         });
         const responseData = await response.json();
-        console.log(responseData.response);
         settexttosum(responseData.response)
         setisloading(false)
       } catch (error) {
