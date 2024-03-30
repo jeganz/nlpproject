@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import InputComponent from './input';
 import OutputComponent from './output';
 
 const SummariseComponent = ({ toggleDarkMode,darkMode}) => {
+
+  const [summary, setsummary] = useState("")
+
+  const summarizeHandler= async(texttosum)=>{
+    try {
+      const response = await fetch('http://localhost:5000/summarize',{
+        method:'POST',
+        headers: {
+          'Content-Type': 'application/json' // Specify JSON content type
+        },
+        body: JSON.stringify({ text: texttosum })
+      });
+      const responseData = await response.json();
+      console.log(responseData);
+      setsummary(responseData.summary)
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
   return (
     <div className="flex justify-center">
       <div className="w-11/12 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -29,8 +48,8 @@ const SummariseComponent = ({ toggleDarkMode,darkMode}) => {
 
         </div>
         <div className="flex flex-col md:flex-row items-center p-4 gap-4">
-          <InputComponent/>
-          <OutputComponent/>
+          <InputComponent summarizeHandler={summarizeHandler}/>
+          <OutputComponent summary={summary} setSummary={setsummary}/>
         </div>
       </div>
     </div>

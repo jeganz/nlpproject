@@ -12,17 +12,7 @@ const InputComponent = ({ summarizeHandler }) => {
     }
 
     const dummysummarizeHandler=()=>{
-        const fetchData = async () => {
-            try {
-              const response = await fetch('http://localhost:5000/apicall');
-              const responseData = await response.json();
-              console.log(responseData);
-              settexttosum(responseData.response)
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          };
-          fetchData()
+        summarizeHandler(texttosum)
     }
 
     const handleImageUpload= async (e)=>{

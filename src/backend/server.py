@@ -1,8 +1,9 @@
-from flask import Flask,request
+from flask import Flask,request, send_from_directory
 
 from flask_cors import CORS
 
 from Image_extract import extract_text
+from model import summariser
 
 app = Flask(__name__)
 CORS(app) 
@@ -31,6 +32,17 @@ def upload():
 
     text=extract_text('uploads/' + file.filename)
     return {'response':text}
+
+@app.route("/summarize", methods=["POST"])
+def summary():
+    data = request.get_json()
+    text = data['text']
+    summari=summariser(text)
+    return {'summary':summari}
+
+@app.route('/audio')
+def get_audio():
+    return send_from_directory('/audio', 'summaryaudio.mp3')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

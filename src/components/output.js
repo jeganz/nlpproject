@@ -1,7 +1,6 @@
 import React, { useState }  from 'react';
 
-const OutputComponent = () => {
-    const [summary, setsummary] = useState('hi all')
+const OutputComponent = ({summary,setSummary}) => {
     const [showaudioplayer, setshowaudioplayer] = useState(false)
     const handleCopy=()=>{
         navigator.clipboard.writeText(summary)
@@ -44,7 +43,7 @@ const OutputComponent = () => {
                     </button>
                 </div>
                 {showaudioplayer?<audio controls >
-                    <source  type="audio/mpeg" />
+                    <source  type="audio/mpeg" src='http://localhost:5000/audio'/>
                     Your browser does not support the audio element.
                 </audio>:null}
             </div>
