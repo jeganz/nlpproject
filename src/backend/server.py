@@ -1,9 +1,9 @@
 from flask import Flask,request, send_from_directory
-
 from flask_cors import CORS
 
 from Image_extract import extract_text
 from model import summariser
+from text_to_audio import generateAudio
 
 app = Flask(__name__)
 CORS(app) 
@@ -38,11 +38,8 @@ def summary():
     data = request.get_json()
     text = data['text']
     summari=summariser(text)
+    generateAudio(summari)
     return {'summary':summari}
-
-@app.route('/audio')
-def get_audio():
-    return send_from_directory('/audio', 'summaryaudio.mp3')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',debug=True)

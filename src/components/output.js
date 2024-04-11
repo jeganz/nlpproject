@@ -1,4 +1,5 @@
 import React, { useState }  from 'react';
+import summaryAudio from '../../src/backend/summaryaudio.mp3';
 
 const OutputComponent = ({summary,setSummary}) => {
     const [showaudioplayer, setshowaudioplayer] = useState(false)
@@ -42,10 +43,8 @@ const OutputComponent = ({summary,setSummary}) => {
                         </div>
                     </button>
                 </div>
-                {showaudioplayer?<audio controls >
-                    <source  type="audio/mpeg" src='http://localhost:5000/audio'/>
-                    Your browser does not support the audio element.
-                </audio>:null}
+                {showaudioplayer?<audio controls src={summaryAudio} type="audio/mpeg"/>
+                :null}
             </div>
         </div>
     );
