@@ -5,9 +5,10 @@ import OutputComponent from './output';
 const SummariseComponent = ({ toggleDarkMode,darkMode}) => {
 
   const [summary, setsummary] = useState("")
-
+  const [isSummaryLoading, setisSummaryLoading] = useState(false)
   const summarizeHandler= async(texttosum)=>{
     try {
+      setisSummaryLoading(true)
       const response = await fetch('http://localhost:5000/summarize',{
         method:'POST',
         headers: {
@@ -18,6 +19,7 @@ const SummariseComponent = ({ toggleDarkMode,darkMode}) => {
       const responseData = await response.json();
       console.log(responseData);
       setsummary(responseData.summary)
+      setisSummaryLoading(false)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -48,8 +50,8 @@ const SummariseComponent = ({ toggleDarkMode,darkMode}) => {
 
         </div>
         <div className="flex flex-col md:flex-row items-center p-4 gap-4">
-          <InputComponent summarizeHandler={summarizeHandler}/>
-          <OutputComponent summary={summary} setSummary={setsummary}/>
+          <InputComponent summarizeHandler={summarizeHandler} setSummary={setsummary}/>
+          <OutputComponent summary={summary} setSummary={setsummary} isload={isSummaryLoading}/>
         </div>
       </div>
     </div>
