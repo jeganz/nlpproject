@@ -1,7 +1,7 @@
 import React, { useState }  from 'react';
 import summaryAudio from '../../src/backend/summaryaudio.mp3';
 
-const OutputComponent = ({summary,setSummary}) => {
+const OutputComponent = ({summary,setSummary,isload}) => {
     const [showaudioplayer, setshowaudioplayer] = useState(false)
     const handleCopy=()=>{
         navigator.clipboard.writeText(summary)
@@ -12,14 +12,22 @@ const OutputComponent = ({summary,setSummary}) => {
     return (
         <div className="w-full md:w-1/2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
             <div className="flex flex-col items-center pb-6">
-                <textarea
+            {isload?(<div role="status" class="w-11/12 mt-4 mr-4  animate-pulse">
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[330px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[300px] mb-2.5"></div>
+            <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+            <span class="sr-only">Loading...</span>
+        </div>):(<textarea
                     id="message"
                     disabled={true}
                     rows="9"
                     value={summary}
                     className="block p-2.5 m-4 w-11/12 text-sm text-gray-900 bg-white rounded-lg border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 scrollbar scrollbar-thumb-gray-500 scrollbar-thin scrollbar-track-transparent"
                     placeholder="Your Summary will appear here..."
-                ></textarea>
+                ></textarea>)}
                 <div className="flex mt-4 md:mt-6 gap-1">
                     <div class="group relative ">
                         <button onClick={handleCopy}>

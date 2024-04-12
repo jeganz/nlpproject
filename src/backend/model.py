@@ -8,6 +8,7 @@ def summariser(text):
 
     semmeri=pipe(text, **gen_kwargs)[0]["summary_text"]
     l = summary(semmeri)
+    # l = summary(text[:20])
     l = l.split("<n>")
     l = " ".join(l)
     return l

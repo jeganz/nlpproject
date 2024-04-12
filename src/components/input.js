@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InputComponent = ({ summarizeHandler }) => {
+const InputComponent = ({ summarizeHandler, setSummary}) => {
     const [texttosum, settexttosum] = useState('')
     const [isloading, setisloading] = useState(false)
     const onTextchange=(e)=>{
@@ -9,6 +9,7 @@ const InputComponent = ({ summarizeHandler }) => {
 
     const textEraser=()=>{
         settexttosum('')
+        setSummary("")
     }
 
     const dummysummarizeHandler=()=>{
