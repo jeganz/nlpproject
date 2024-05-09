@@ -20,6 +20,7 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark');
     }
+    
   }, [darkMode]);
 
   const toggleDarkMode = () => {

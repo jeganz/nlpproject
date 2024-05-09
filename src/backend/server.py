@@ -1,25 +1,11 @@
-from flask import Flask,request, send_from_directory
+from flask import Flask,request
 from flask_cors import CORS
-import os
 from Image_extract import extract_text
 from model import summariser
 from text_to_audio import generateAudio
 
 app = Flask(__name__)
 CORS(app)
-
-# if os.path.exists("summaryaudio.mp3"):
-#   os.remove("summaryaudio.mp3")
-
-@app.route('/')
-def index():
-    return {'its':'home'}
-
-@app.route('/apicall')
-def api():
-    return {
-        'response':'api call success'
-    }
 
 @app.route("/upload", methods=["POST"])
 def upload():

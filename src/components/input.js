@@ -33,6 +33,7 @@ const InputComponent = ({ summarizeHandler, setSummary}) => {
         console.error('Error fetching data:', error);
         setisloading(false)
       }
+      e.target.value=''
 
     }
 
